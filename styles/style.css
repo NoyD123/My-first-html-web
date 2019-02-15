@@ -1,0 +1,497 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100vh;
+    background-repeat: repeat;
+    background-image: url(sky.JPG);
+    overflow: hidden;
+
+}
+
+/*שמש שמעל הגרדיאנט*/
+
+#sun1 {
+    animation: sun-animation 10s reverse infinite;
+
+    animation-duration: 10s;
+    animation-timing-function: initial;
+    animation-delay: initial;
+    animation-iteration-count: infinite;
+    animation-direction: reverse;
+    animation-fill-mode: initial;
+}
+
+@keyframes sun-animation {
+    0% {
+        fill-opacity: 0.5;
+        stroke-dasharray: 2 4;
+        cx: 750 cy: 50;
+    }
+    50% {
+        stroke-width: 45;
+        fill-opacity: 0.9;
+        stroke-dasharray: 2 2;
+        cx: 650;
+        cy: 80;
+    }
+}
+
+circle {
+    cx: 750;
+    cy: 50;
+    r: 40;
+    stroke: yellow;
+    stroke-width: 20;
+    stroke-dasharray: 2, 4;
+    fill: orange;
+    fill-opacity: 0.5;
+    stroke-opacity: 0.9;
+}
+
+/*קשת*/
+
+g {
+    stroke-opacity: 0.1;
+    stroke-width: 10;
+    fill: none;
+}
+
+.rainbow {
+    animation: rainbow-animation 10s reverse infinite;
+    animation-duration: 10s;
+    animation-timing-function: initial;
+    animation-delay: initial;
+    animation-iteration-count: infinite;
+    animation-direction: reverse;
+    animation-fill-mode: initial;
+}
+
+@keyframes rainbow-animation {
+    0% {
+        stroke-opacity: 0.1;
+    }
+
+    50% {
+        stroke-opacity: 0.5;
+    }
+}
+
+/*שחף*/
+
+#sh01 {
+    animation: movsh01 20s infinite;
+    animation-duration: 20s;
+    animation-timing-function: initial;
+    animation-delay: initial;
+    animation-iteration-count: infinite;
+    animation-direction: initial;
+    animation-fill-mode: initial;
+    opacity: 0;
+}
+
+@keyframes movsh01 {
+    0% {}
+    25% {
+        transform: translate(-100px, 50px);
+        opacity: 1;
+    }
+    50% {
+        transform: translate(-180px, 700px);
+    }
+    75% {
+        transform: translate(500px, -10px);
+        opacity: 1;
+    }
+    85% {
+        transform: translate(620px, -10px);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(-100px, 50px);
+    }
+}
+
+/*3 כוכבים*/
+
+#star1 {
+    animation: movestar1 3s linear infinite reverse;
+    animation-duration: 3s;
+    animation-timing-function: linear;
+    animation-delay: initial;
+    animation-iteration-count: infinite;
+    animation-direction: reverse;
+    animation-fill-mode: initial;
+}
+
+@keyframes movestar1 {
+    0% {}
+    50% {
+        fill: lightblue;
+    }
+}
+
+#star2 {
+    animation: movestar2 3s linear reverse infinite;
+    animation-duration: 3s;
+    animation-timing-function: linear;
+    animation-delay: initial;
+    animation-iteration-count: infinite;
+    animation-direction: reverse;
+    animation-fill-mode: initial;
+}
+
+@keyframes movestar2 {
+    0% {}
+    50% {
+        fill: orange;
+    }
+}
+
+#star3 {
+    animation: movestar3 3s linear reverse infinite;
+    animation-duration: 3s;
+    animation-timing-function: linear;
+    animation-delay: initial;
+    animation-iteration-count: infinite;
+    animation-direction: reverse;
+    animation-fill-mode: initial;
+}
+
+@keyframes movestar3 {
+    0% {}
+    50% {
+        fill: crimson;
+    }
+}
+
+#container {
+    width: 100%;
+    height: calc(100% - 24px);
+    position: relative;
+
+
+}
+
+/*דולפין*/
+
+#cloud {
+    opacity: 0;
+}
+
+
+
+/*frame החלון שלי עם ההסבר*/
+
+#window {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+/*השמש שמופיעה בהפעלת כפתור*/
+
+#sun {
+    animation: moveSun 4s;
+    animation-play-state: paused;
+    opacity: 0;
+    animation-fill-mode: forwards;
+}
+
+@keyframes moveSun {
+    to {
+        transform: translateX(70px);
+        opacity: 1;
+    }
+}
+
+/*המים שיוצאים מהדולפין*/
+
+.light {
+    animation: moveLight 7s linear infinite;
+    animation-play-state: paused;
+    opacity: 0;
+    stroke-dasharray: 10 2;
+    stroke-dashoffset: 200;
+}
+
+@keyframes moveLight {
+    0.00001% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 1;
+        stroke-dashoffset: 0;
+    }
+}
+
+/*החלון בו מופיע המלל*/
+
+#frame {
+    width: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 4px solid black;
+    border-radius: 50px 10px 50px 10px;
+    background-image: linear-gradient(to right, #f83600 0%, #f9d423 100%);
+    opacity: 0;
+    transition: opacity 2s;
+    cursor: pointer;
+}
+
+#frame #text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 88%;
+    overflow: auto;
+}
+
+/*הכפתור בעזרתו אני מפעילה אנימציה*/
+
+#btn {
+    bottom: 10%;
+    left: 1%;
+    position: fixed;
+    width: 100px;
+    padding: 8px;
+    text-align: center;
+    font-size: 1.2em;
+    cursor: pointer;
+    background-color: darkgrey;
+    color: white;
+}
+
+#btn:hover {
+    background-color: darkslategray;
+    color: white;
+}
+
+/*ציפורים*/
+
+.container1 {
+    width: 70%;
+    height: 70%;
+    position: relative;
+}
+
+
+#first {
+    display: block;
+    position: absolute;
+    animation: move1 14s linear infinite;
+    bottom: 300px;
+
+}
+
+@keyframes move1 {
+    0% {
+        transform: translateX(-600px) scale(0.5);
+    }
+    100% {
+        transform: translateX(1500px) scale(0.5);
+    }
+}
+
+
+
+/*svg of ellipse*/
+
+.demo-block svg {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/*animation of ellipse*/
+
+#text-path-anim2 {
+
+    stroke-dasharray: 6 6;
+    stroke-dashoffset: 9;
+    animation: stroke 10s linear infinite;
+}
+
+
+
+
+/*טקסט noy dagan*/
+
+#text1 {
+    text-anchor: middle;
+    fill: none;
+    font-weight: normal;
+    font-size: 2em;
+    font-family: 'AR Berkley';
+    stroke: white;
+    stroke-width: 2;
+
+}
+
+#text-path-anim2a {
+    stroke-dasharray: 600;
+    stroke-dashoffset: 600;
+    animation: stroke 10s linear infinite;
+
+}
+
+@keyframes stroke {
+    to {
+        stroke-dashoffset: 500;
+    }
+}
+
+
+/*דגים*/
+
+/* Fish Animation */
+
+@keyframes swim {
+    0%,
+    100% {
+
+        transform: translateX(-500px);
+    }
+    100% {
+        transform: translateX(1500px);
+    }
+}
+
+#fishh {
+    animation: swim 7s linear infinite;
+}
+
+svg #fish1,
+svg #fish2 {
+    fill: #528484;
+    animation: bounce 2s infinite;
+}
+
+svg #fish3,
+svg #fish4 {
+    fill: #528484;
+    animation: bounce 2s infinite;
+}
+
+svg #fish5,
+svg #fish6 {
+    fill: #528484;
+    animation: bounce 2s infinite;
+}
+
+svg #fish2 {
+    animation-delay: 0.5s;
+}
+
+svg #fish3 {
+    animation-delay: 0.2s;
+}
+
+svg #fish4 {
+    animation-delay: 0.4s;
+}
+
+svg #fish5 {
+    animation-delay: 0.1s;
+
+}
+
+svg #fish6 {
+    animation-delay: 0.3s;
+}
+
+@keyframes bounce {
+    0%,
+    50%,
+    100% {
+
+        transform: translateY(0);
+
+    }
+    25% {
+        transform: translateY(-5px);
+    }
+    75% {
+
+        transform: translateY(-3px);
+    }
+}
+
+
+
+/*הגדרת לבבות*/
+
+#star6 {
+    transform-origin: 50% 50%;
+    animation: pulse1 3s linear infinite;
+}
+
+#star7 {
+    transform-origin: 0% 0%;
+    animation: pulse1 3s linear infinite;
+}
+
+#star8 {
+    transform-origin: 30% 30%;
+    animation: pulse1 3s linear infinite;
+}
+
+#star4 {
+    transform-origin: 50% 50%;
+    animation: pulse1 3s linear infinite;
+}
+
+#star5 {
+    transform-origin: 50% 50%;
+    animation: pulse1 3s linear infinite;
+}
+
+/*אנימציות לכוכבים*/
+
+@keyframes pulse1 {
+    0% {
+
+        transform: scale(2.5);
+    }
+    50% {
+
+        transform: scale(0.8);
+    }
+    100% {
+
+        transform: scale(1);
+    }
+
+}
+
+
+/*חלק תחתון*/
+
+footer {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1px;
+    text-align: center;
+    background-color: dimgrey;
+    /* For browsers that do not support gradients */
+    background: radial-gradient( white 15%, dimgrey 60%);
+    /* Standard*/
+    font-size: 20px;
+    color: dimgray;
+}
